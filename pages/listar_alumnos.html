@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Gestor de Alumnos</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <!-- Toastify -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <!-- My css -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <!-- Navbar starts -->
+    <header id="header" class="sticky-top">
+        <nav class="navbar navbar-expand-md sticky-top bg-primaryMine" id="navigationBar">
+            <div class="container-fluid">
+                <a class="navbar-brand text-white" href="../index.html">
+                    <img src="../assets/img/knowledge-icon.png" alt="knowledge-icon">
+                    SGA
+                </a>
+                <button class="navbar-toggler bg-primaryMine me-4" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-end">
+                        <li class="nav-item me-4">
+                            <a class="nav-link text-white" href="./listar_cursadas.html">
+                                Listar Cursadas
+                            </a>
+                        </li>
+                        <li class="nav-item me-4">
+                            <a class="nav-link text-white" href="./listar_alumnos.html">
+                                Listar Alumnos
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Navbar ends  -->
+
+    <!-- Main content start -->
+    <main id="mainAlumnos" class="container">
+        <nav class="pt-2" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../index.html">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Listar Alumnos</li>
+            </ol>
+        </nav>
+        <h1 class="fw-bold text-center">
+            Listado de Alumnos
+        </h1>
+        <!-- Modal starts -->
+        <div class="modal fade" id="addAlumnoModal" tabindex="-1" aria-labelledby="addAlumnoModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title fs-5" id="addAlumnoModalLabel">Agregar Alumno</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form add alumno starts -->
+                        <form id="addAlumnoForm">
+                            <div class="mb-3">
+                                <label for="alumno-firstName" class="col-form-label">Nombre:</label>
+                                <input type="text" class="form-control" id="alumno-firstName">
+                                <p id="alert-alumno-firstName" class="d-none">Completar campo</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="alumno-lastName" class="col-form-label">Apellido:</label>
+                                <input type="text" class="form-control" id="alumno-lastName">
+                                <p id="alert-alumno-lastName" class="d-none">Completar campo</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="alumno-email" class="col-form-label">Email:</label>
+                                <input type="email" class="form-control" id="alumno-email">
+                                <p id="alert-alumno-email" class="d-none">Completar campo</p>
+                            </div>
+                            <div class="mb-3">
+                                <label for="alumno-gender" class="col-form-label">Género:</label>
+                                <select id="alumno-gender" class="form-select" aria-label="gender-select">
+                                    <option value="Hombre">Hombre</option>
+                                    <option value="Mujer">Mujer</option>
+                                </select>
+                                <p id="alert-alumno-gender" class="d-none">Completar campo</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Cancelar</button>
+                                <button type="submit" class="btn btn-primaryMine">Guardar</button>
+                            </div>
+                        </form>
+                        <!-- Form add alumno ends -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal ends -->
+        <div class="row">
+            <div class="col-6">
+                <button id="addAlumnoBtn" type="button" class="btn btn-primaryMine mb-2" data-bs-toggle="modal"
+                    data-bs-target="#addAlumnoModal">
+                    Agregar alumno
+                </button>
+            </div>
+            <div class="col-12">
+                <ul id="alumnos" class="list-group">
+                    <!-- render de alumnos -->
+                </ul>
+            </div>
+            <div class="col-12 d-flex justify-content-center mt-2">
+                <nav aria-label="alumnos-pagination">
+                    <ul id="alumnos-pagination" class="pagination">
+                        <!-- render de paginación -->
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </main>
+    <!-- Main content ends -->
+
+    <script src="../js/alumnos.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/index/index.js"></script>
+    <script src="../js/utilities.js"></script>
+    <script src="../js/listar_alumnos/index.js"></script>
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <!-- Toastify -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+</body>
+
+</html>
